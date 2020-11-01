@@ -38,7 +38,7 @@ class ArtMoMA:
                 im = Image.open(BytesIO(response.content))
             except OSError:
                 return None
-            path = "ArtImages"
+            path = "ArtImages/" + self.artist + "_" + self.id + ".jpg"
             self.imagePath = path
             im.save(path, "JPEG")
 
@@ -56,6 +56,7 @@ with open("CSVFiles/Artworks.csv", encoding = 'utf-8-sig') as artFile:
         if width or depth or height:
             artPiece = ArtMoMA(id, width, depth, height, imageUrl, artist)
             artPieces.append(artPiece)
+            print(artist)
 
 for art in artPieces:
     if "Pollock" in art.artist:
